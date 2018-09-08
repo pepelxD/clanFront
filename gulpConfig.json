@@ -1,0 +1,28 @@
+{
+    "path": {
+        "build": {
+            "dir": "app",
+            "imgDir": "app/img",
+            "jsDir": "app/js",
+            "cssDir": "app/css"
+        },
+        "src": {
+            "dir": "dev",
+            "imgDir": "dev/img",
+            "cssDir": "dev/style.css",
+            "html": "dev/*.pug",
+            "js": "dev/script.js",
+            "assets": "dev/assets"
+        },
+        "tasks": {
+            "css": "./tasks/css",
+            "html": "./tasks/html",
+            "img": "./tasks/img",
+            "font": "./tasks/font",
+            "clean": "./tasks/clean",
+            "js": "./tasks/js",
+            "json": "./tasks/json",
+            "assets": "./tasks/assets"
+        }
+    }
+}

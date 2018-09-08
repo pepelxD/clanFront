@@ -1,0 +1,17 @@
+@import "normalize.css";
+@import "components/preloader/preloader.css";
+
+body {
+    overflow: hidden;
+}
+
+.wrapper {
+    wrapper: "";
+}
+.row {
+    row: "";
+}
+.col {
+    col: "";
+    col-size: 4;
+}
