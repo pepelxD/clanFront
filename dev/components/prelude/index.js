@@ -69,8 +69,13 @@ export default class {
 			
 			vertices = geomStart.vertices.map(
 				(v, i) => {
-				  
-				let nv = v.clone();
+				let nv = null;
+				if(v.init) {
+					nv = v.init.clone();
+				} else {
+					nv = v.clone();
+				}
+				//let nv = v.clone();
 				
 				tempDist.copy(geomEnd.vertices[i]).sub(nv);
 				let dist = tempDist.length();
@@ -121,11 +126,12 @@ export default class {
 			textGeo.computeBoundingBox();
 			textGeo.computeVertexNormals();
 			textGeo.center();
-			fillWithPoints(textGeo, 30000);
+			fillWithPoints(textGeo, 15000);
 
 			this.textsGeo.push(textGeo);
 		});
-		bridge(this.textsGeo);
+		//bridge(this.textsGeo);
+		//let isComplate = false;
 		
 
 
@@ -209,7 +215,11 @@ export default class {
 			} else {
 				delta = clock.getDelta();
 				globalTime += delta;
-
+				/* if (!isComplate) {
+					console.log(123)
+					bridge(this.textsGeo);
+					isComplate = true;
+				} */
 				this.textsGeo[0].vertices.forEach(v => {
 					clampedDirLength.copy(v.dir).multiplyScalar(globalTime * speed).clampLength(0, v.dist); // clamp the length!
 					v.copy(v.random).add(clampedDirLength);
@@ -221,6 +231,7 @@ export default class {
 			this.renderer.render(this.scene, this.camera);
 		}
 		render();
+		bridge(this.textsGeo);
 	}
 	_playAudio() {
 		let listener = new THREE.AudioListener();
@@ -247,7 +258,6 @@ export default class {
 				console.log('time: ' + (t2 - t1)/1000)
 				_this._playAudio()
 				this.sound.setBuffer( buffer );
-				//this.sound.setLoop( true );
 				this.sound.setVolume( 0.5 );
 				this.sound.play();
 				cb();
