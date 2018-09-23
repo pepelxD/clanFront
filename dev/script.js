@@ -1,4 +1,6 @@
+
 import Prelude from './components/prelude';
+import Clan from './js/clanInfo.js';
 //import * as THREE from 'three';
 //import orbitControls from 'three-orbit-controls';
 
@@ -6,12 +8,15 @@ import Prelude from './components/prelude';
 
 //THREE.TDSLoader = loader;
 
-let preloader = document.querySelector('.loading-window');
-
+let preloader = document.querySelector('.loading-wrapper');
+let clanBox = document.querySelector('main');
 
 
 let prelude = new Prelude('Freedom | on | L2Arcana');
-prelude.init(() => {
-  preloader.style.display = 'none';
+/* prelude.init(() => {
+  preloader.remove();
 });
+ */
 
+let clan = new Clan(clanBox, 'clan_name', 'clan_info');
+clan.init();

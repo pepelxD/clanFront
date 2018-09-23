@@ -33,6 +33,7 @@
     "gulp-pug": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
     "postcss-combine-duplicated-selectors": "^5.0.1",
+    "postcss-csslock": "^1.0.0",
     "postcss-import": "^11.1.0",
     "postcss-neogrid": "^1.1.0",
     "postcss-nested": "^3.0.0",

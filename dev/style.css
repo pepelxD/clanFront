@@ -1,17 +1,151 @@
 @import "normalize.css";
 @import "components/preloader/preloader.css";
-
-body {
-    overflow: hidden;
+@import "components/prelude/prelude.css";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
+html, body, main {
+    height: 100%;
+}
+@font-face {
+	font-family: "Allgidus3Dxtr";
+	src: url(../font/Allgidus3Dxtr.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+	font-family: "Bemount";
+	src: url(../font/Bemount.otf) format("OpenType");
+    font-weight: normal;
+    font-style: normal;
+}
+.visually-hidden {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0 !important;
+	border:0 !important;
+	height: 1px !important; 
+	width: 1px !important; 
+	overflow: hidden;
+}
 .wrapper {
     wrapper: "";
+    height: 100%
 }
-.row {
-    row: "";
+.active-prelude {
+    overflow: hidden;
 }
-.col {
-    col: "";
-    col-size: 4;
+.content {
+    background-image: url("../img/fon.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100%;
 }
+.alliance {
+    position: relative;
+    padding-top: 45px;
+    text-shadow: 2px -3px 4px aliceblue;
+    color: darkred;
+}
+.alliance_title {
+    margin-top: 0;
+    text-align: center;
+    font-family: "Allgidus3Dxtr";
+    font-size: 45px;
+}
+.settings {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-image: url(../img/gtkabout.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    &_form {
+        display: none;
+    }
+}
+.clan {
+    &--active {
+        animation-name: clan-info-show;
+        animation-duration: 4s;
+        animation-timing-function: linear;
+    }
+    &_name {
+        width: 100%;
+        font-family: "Bemount";
+        font-size: 120px;
+        text-align: center;
+        margin-bottom: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 15px;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 17px #5f488c;
+        text-shadow: 0 0 10px #fff;
+        color: #5a0404;
+        transition: all .1s linear;
+        &:hover {
+            background-color: rgba(0, 0, 0, .4);
+            text-shadow: 0 0 3px #fff;
+        }
+        &:active {
+            transform: scale(0.98);
+            outline: none;
+        }
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 10px #000, 0px 0px 17px #5f488c, 0 0 5px #fff inset;
+        }
+        &--active {
+            /* transform: scale(0.98); */
+            box-shadow: 0 0 10px #000, 0px 0px 17px #5f488c, 0 0 5px #fff inset;
+            outline: none;
+            animation-name: clan-info-active;
+            animation-duration: 0.4s;
+            animation-timing-function: linear;
+
+        }
+    }
+    &_info {
+        position: fixed;
+        left: 50%;
+        bottom: 50%;
+        color: #fff;
+        z-index: 1;
+        padding: 20px;
+        transform: translate(-50%, 50%);
+        background-color: rgba(0, 0, 0, .5);
+        border-radius: 10px;
+        width: 80%;
+        height: auto;
+    }
+}
+
+
+@keyframes clan-info-active {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.98);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes clan-info-show {
+    0% {
+        transform: rotateX(0);
+    }
+    100% {
+        transform: rotateX(180deg);
+    }
+}
+

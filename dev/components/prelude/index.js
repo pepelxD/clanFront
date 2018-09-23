@@ -7,7 +7,7 @@ export default class {
 		this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
 		this.renderer = new THREE.WebGLRenderer({antialias: true});
 	}
-	_drawText(font) {
+	_drawText(font, page) {
 		let morphs = [];
 		let morphIndex = 0;
 
@@ -202,6 +202,7 @@ export default class {
 				if (currentDuration >= morphs[morphIndex].duration + 0.5 && morphIndex === morphs.length - 1) {
 					console.log(morphIndex, 'end animation');
 					cancelAnimationFrame(animationId);
+					this.renderer.domElement.classList.add('extinction');
 				}
 				
 				if (currentDuration >= morphs[morphIndex].duration + 0.5){
@@ -238,7 +239,7 @@ export default class {
 		this.camera.add( listener );
 		this.sound = new THREE.Audio( listener );
 	}
-	init(cb) {
+	init(cb, page) {
 		let _this = this;
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 		this.renderer.setClearColor(0x000000);
@@ -253,7 +254,7 @@ export default class {
 		loader.load('./json/optimer_bold.typeface.json', (font) => {
 			audioLoader.load( './assets/dendi.mp3', (buffer) => {
 				let t1 = performance.now();
-				_this._drawText(font);
+				_this._drawText(font, page);
 				let t2 = performance.now();
 				console.log('time: ' + (t2 - t1)/1000)
 				_this._playAudio()
@@ -269,8 +270,15 @@ export default class {
 			_this.camera.updateProjectionMatrix();
 			_this.renderer.setSize( window.innerWidth, window.innerHeight );
 		}
+		function removeCanvas(event) {
+			if(event.animationName === 'change-opacity') {
+				_this.renderer.domElement.remove();
+				window.removeEventListener('animationend', removeCanvas);
+			}
+		}
 		window.addEventListener( 'resize', WindowResizeHandler, false );
-		
+		window.addEventListener('animationend', removeCanvas);
+		this.renderer.domElement.classList.add('prelude');
 		document.body.appendChild(this.renderer.domElement);
 	}
 

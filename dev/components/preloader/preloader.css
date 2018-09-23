@@ -122,14 +122,22 @@
 }
 
 body {
-	background: #000;
+	//background: #000;
 	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
 }
 
 .fadeIn, .loading-window {
 	animation: fadeIn .4s both;
 }
-
+.loading-wrapper {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #000;
+	z-index: 2;
+}
 .loading-window {
 	background: #333;
 	border-radius: 6px;

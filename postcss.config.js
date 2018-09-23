@@ -11,8 +11,7 @@ let settings = {
       //'postcss-mixins': {silent: true}, // выбрать нужно
       //'postcss-sassy-mixins': {silent: true}, // между ними
       //'postcss-calc': {}, // хз
-      'postcss-neogrid': {},
-    
+      'postcss-csslock': {},
       //'postcss-nested-ancestors': {}, // сомнительно что пригодиться, хотя в БЭМ именовании может быть полезен
       'postcss-nested': {}, // вложенные css правила 
       
@@ -23,6 +22,8 @@ let settings = {
         path: './dev/components/neoslide/img/spries/'
 
       }, */
+      
+      'postcss-neogrid': {},
       'postcss-sprites': {
         stylesheetPath: './app/css',
         spritePath: './app/img/',
@@ -37,6 +38,7 @@ let settings = {
   }
   if (!isDevelop) {
     settings.plugins['cssnano'] = {};
+    settings.plugins['autoprefixer'] = {browsers: ['last 4 versions']};
   }
   module.exports = settings;
   
